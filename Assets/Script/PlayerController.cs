@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float crouchSpeed = 2f;
     [SerializeField] float jumpHeight = 2f;
     private float currentSpeed;
-
+    [SerializeField] float cooldownStepSound = 0.2f;
+    private float stepTimer = 0f;
+    [SerializeField] GameObject soundStep;
     [Header("Mouse Settings")]
     [SerializeField] float mouseSensitivity = 100f;
     private float xRotation = 0f;
@@ -69,7 +71,10 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = -2f;
         }
-
+        if (moveHorizontal != 0 || moveVertical != 0)
+        {
+            PlayFootstep();
+        }
         velocity.y += Physics.gravity.y * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
@@ -117,6 +122,26 @@ public class PlayerController : MonoBehaviour
         else
         {
             controller.height = standingHeight;
+        }
+    }
+    private void CheckMovement()
+    {
+        // Проверяем, двигается ли персонаж
+        //isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
+    }
+
+    private void PlayFootstep()
+    {
+        // Уменьшаем таймер
+        stepTimer -= Time.deltaTime;
+
+        // Когда таймер доходит до нуля, воспроизводим звук шага
+        if (stepTimer <= 0f)
+        {
+            Instantiate(soundStep, gameObject.transform.position, Quaternion.identity);
+
+            // Сбрасываем таймер до следующего шага
+            stepTimer = cooldownStepSound;
         }
     }
 }

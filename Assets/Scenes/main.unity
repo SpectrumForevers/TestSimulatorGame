@@ -861,6 +861,8 @@ MonoBehaviour:
   sprintSpeed: 10
   crouchSpeed: 2
   jumpHeight: 2
+  cooldownStepSound: 0.5
+  soundStep: {fileID: 5691173579418016256, guid: d1040e304d30cb34d96f7fea35ccb416, type: 3}
   mouseSensitivity: 100
   crouchHeight: 0.8
   standingHeight: 2
