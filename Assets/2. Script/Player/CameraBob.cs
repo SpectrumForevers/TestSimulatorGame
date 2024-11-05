@@ -10,7 +10,7 @@ public class CameraBob : MonoBehaviour
 
     private float bobTimer = 0f;
     private Vector3 initialPosition;
-    private bool isMoving = false;
+    [SerializeField] bool isMoving = false;
 
     private void Start()
     {
@@ -43,12 +43,6 @@ public class CameraBob : MonoBehaviour
             transform.localPosition = Vector3.Lerp(transform.localPosition,
                                                    initialPosition + new Vector3(horizontalOffset, verticalOffset, 0),
                                                    Time.deltaTime * transitionSpeed);
-        }
-        else
-        {
-
-            transform.localPosition = Vector3.Lerp(transform.localPosition, initialPosition, Time.deltaTime * transitionSpeed);
-            bobTimer = 0f;
         }
     }
 }

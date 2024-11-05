@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
         }
         velocity.y += Physics.gravity.y * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+        
     }
 
     private void RotateCamera()
@@ -123,11 +124,6 @@ public class PlayerController : MonoBehaviour
         {
             controller.height = standingHeight;
         }
-    }
-    private void CheckMovement()
-    {
-        // Проверяем, двигается ли персонаж
-        //isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
     }
 
     private void PlayFootstep()
